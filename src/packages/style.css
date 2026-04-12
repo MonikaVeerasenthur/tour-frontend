@@ -1,0 +1,814 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+.fullwidth-slider {
+  position: relative;
+  width: 100vw;  /* Full viewport width */
+  height: 500px; /* Adjust height as needed */
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 0;
+  padding: 40px 60px;
+  box-sizing: border-box;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
+  position: relative;
+}
+
+.caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 25px 40px;
+  border-radius: 12px;
+  max-width: 40%;
+  margin-left: 30px;
+}
+
+.caption h2 {
+  margin: 0 0 12px 0;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.caption p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 50px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+  transition: background 0.3s ease;
+  z-index: 3;
+}
+
+.nav:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.nav.prev {
+  left: 20px;
+}
+
+.nav.next {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .caption {
+    max-width: 70%;
+    padding: 15px 20px;
+  }
+
+  .caption h2 {
+    font-size: 28px;
+  }
+
+  .caption p {
+    font-size: 14px;
+  }
+
+  .nav {
+    font-size: 40px;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow-y: auto; /* Ensure vertical scrolling is enabled */
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+#root,
+.itinerary-container {
+  min-height: 100vh; /* full viewport height */
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px; /* space for footer or buffer from bottom */
+  background-color: #f7f7f7; /* optional background */
+}
+
+/* If you have a footer, add spacing */
+footer {
+  height: 80px;
+  background-color: #222;
+  color: white;
+  text-align: center;
+  line-height: 80px;
+  position: relative;
+  z-index: 100;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  background-color: #f7f7f7;
+  color: #222;
+}
+
+/* Body section */
+.body-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+.info-section {
+  flex: 1 1 60%;
+  padding-right: 20px;
+}
+.package-card {
+  flex: 1 1 35%;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+.drawer-btn {
+  /* background: #090b5e !important; */
+  margin-top: 15px;
+  color: #fff;
+}
+
+/* Form inside drawer */
+.drawer-form {
+  width: 360px;
+  padding: 25px;
+}
+.form-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+/* Stepper area */
+.stepper-container {
+  margin-top: 25px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.step-content {
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Animated Card */
+.animated-card {
+  flex: 1 1 35%;
+  border-radius: 14px;
+  overflow: hidden;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeSlideUp 1s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.animated-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0px 10px 25px rgb(7, 7, 63);
+}
+
+/* Fade-slide entrance */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card content scroll styling */
+.card-content-scroll {
+  max-height: 250px;
+  padding-right: 12px;
+  padding-bottom: 40px;
+}
+
+/* Hide ugly default scroll and replace with custom */
+.card-content-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+.card-content-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 159, 198, 0.6);
+  border-radius: 10px;
+}
+.card-content-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 159, 198, 0.9);
+}
+.card-content-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* For Firefox */
+.card-content-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 159, 198, 0.6) transparent;
+}
+
+/* Typography inside card */
+.card-title {
+  font-weight: 600;
+  font-size: 30%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.card-item {
+  margin: 6px 0;
+  margin-left: 20px;
+}
+
+/* Responsive container for center alignment */
+.malaysia-tour-card {
+  width: 100%;
+  max-width: 360px;
+}
+
+/* Responsive for smaller screens */
+@media screen and (max-width: 480px) {
+  .malaysia-tour-card {
+    max-width: 100%;
+    margin: 16px 8px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .body-section {
+    flex-direction: column;
+  }
+  .info-section {
+    padding-right: 0;
+  }
+  .package-card {
+    margin-top: 20px;
+  }
+}
+
+/* Cruise css */
+
+.cruise-section {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 24px 16px 40px 16px;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(54, 60, 80, 0.13);
+  position: relative;
+}
+.unique-bg-cordelia {
+  background: linear-gradient(110deg, #fff0f4 0%, #fbe5ec 100%);
+}
+
+.gradient-heading {
+  background: linear-gradient(90deg, #ff5b87 20%, #ce6bff 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+.swoosh {
+  display: inline-block;
+  width: 2rem;
+  height: 0.4rem;
+  background: linear-gradient(90deg, #ff95b5 30%, #a26cff 100%);
+  border-radius: 10px;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+.carousel {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.carousel-img {
+  flex: 0 0 240px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 2px 18px rgba(220, 90, 120, 0.1);
+  border: 2.5px solid transparent;
+  transition: border 0.3s, box-shadow 0.3s,
+    transform 0.36s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+.carousel-img:hover {
+  border: 2.5px solid #ff5b87;
+  transform: scale(1.08) rotate(-0.7deg);
+  box-shadow: 0 7px 32px #ffb1c3bb;
+}
+.unique-shadow {
+  box-shadow: 0 4px 22px 0 rgba(205, 62, 119, 0.17);
+}
+.description-text {
+  font-size: 1.14rem;
+  color: #664883;
+}
+
+.destination-title {
+  letter-spacing: 0.04em;
+  color: #ff3970;
+  border-bottom: 2.5px solid #ffe3eb;
+  padding-right: 8px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+.select-chip {
+  font-size: 1.04rem;
+  border-radius: 18px;
+  box-shadow: 0 2px 6px #ffd7e2ad;
+  transition: transform 0.22s cubic-bezier(0.5, 1.9, 0.71, 1.29),
+    background 0.21s, box-shadow 0.22s;
+}
+.select-chip:hover,
+.select-chip:focus {
+  background: linear-gradient(90deg, #f8e9fb 20%, #ffe6ec 90%);
+  color: #bb1560 !important;
+  transform: scale(1.13) translateY(-2px);
+  box-shadow: 0 7px 18px 0 #ffb1c3cc;
+}
+.city-modal {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  min-width: 340px;
+  max-width: 94vw;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  z-index: 1002;
+}
+.glass-modal {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  box-shadow: 0 10px 60px 0 #f9bfe9cc;
+  backdrop-filter: blur(13.5px);
+  border: 1.5px solid #ffe5f4fe;
+  transition: box-shadow 0.25s cubic-bezier(0.2, 1.1, 0.7, 1.17);
+}
+.city-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 45px #fcd7ee88;
+}
+.close-btn {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px #ffd4ea97;
+}
+
+@media (max-width: 600px) {
+  .cruise-section {
+    border-radius: 8px;
+    margin: 4px;
+    padding: 8px;
+  }
+  .carousel-img {
+    flex: 0 0 140px;
+    height: 74px;
+    border-radius: 11px;
+  }
+  .city-modal {
+    min-width: 90vw;
+    border-radius: 8px;
+  }
+}
+
+/* Cordelia */
+
+/* Cruise heading animation */
+
+.Cordelia-in{
+  background-image: linear-gradient(90deg, brown, #b08f5a, pink, navy);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Text Heading */
+
+.Cordelia-out{
+  background-image: linear-gradient(90deg, purple, #cfd770, black, rgb(248, 0, 0));
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Royal Caribbean */
+
+/* Cruise heading animation */
+
+.RoyalCaribbean-in{
+  background-image: linear-gradient(90deg, rgb(114, 83, 83), #bbd466fe, rgb(161, 90, 159), navy);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Text Heading */
+
+.RoyalCaribbean-out{
+  background-image: linear-gradient(90deg, rgb(93, 66, 156), #8e907d, rgb(25, 227, 183), rgb(133, 195, 35));
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Disney Cruise Line Caribbean */
+
+/* Cruise heading animation */
+
+.DisneyCruiseLine-in{
+  background-image: linear-gradient(90deg, #fbbe4f, #76d0c0, navy);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Text Heading */
+
+.DisneyCruiseLine-out{
+  background-image: linear-gradient(90deg, #1ab28a, #746bab, #4a62d8);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+body {
+  background: linear-gradient(120deg, #fff9fb 0%, #ffbbe3 120%);
+}
+@media (min-width: 600px) {
+  .responsive-h1 {
+    font-size: 2.6rem;
+  }
+  .responsive-h2 {
+    font-size: 2rem;
+  }
+  .responsive-body {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 900px) {
+  .responsive-h1 {
+    font-size: 3.2rem;
+  }
+  .responsive-h2 {
+    font-size: 2.5rem;
+  }
+  .responsive-body {
+    font-size: 1.25rem;
+  }
+}
+.unique-bg-cordelia {
+  background: none !important;
+}
+.cruise-section {
+  background: none !important;
+  box-shadow: none !important;
+}
+.gradient-heading {
+  background: none !important;
+}
+.carousel-img,
+.city-card {
+  background: none !important;
+}
+
+
+/* Dream Destination text animation */
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px black, 0 0 10px #fff, 0 0 15px #9b7a4c, 0 0 20px #9b7a4c; }
+  50% { text-shadow: 0 0 10px black, 0 0 20px #fff, 0 0 30px #9b7a4c, 0 0 40px #9b7a4c; }
+  100% { text-shadow: 0 0 5px black, 0 0 10px #fff, 0 0 15px #9b7a4c, 0 0 20px #9b7a4c; }
+}
+.top-rate {
+  color: #fff;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Top Rated text animation */
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px black, 0 0 10px white, 0 0 15px black, 0 0 20px black; }
+  50% { text-shadow: 0 0 10px black, 0 0 20px white, 0 0 30px black, 0 0 40px black; }
+  100% { text-shadow: 0 0 5px black, 0 0 10px white, 0 0 15px black, 0 0 20px black; }
+}
+.dream-spot {
+  color: #fff;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Andaman text animation */
+
+.andaman {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    silver, orange, pink, purple, lightblue,  rgb(183, 238, 183)
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Bali text animation */
+
+.bali {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    black, #F2C008, green, #5087C6, #ED1A3A, #FF9955
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Coorg text animation */
+
+.coorg {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    green, red, rgb(226, 176, 82), black, white, #81b05a
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Goa text animation */
+
+.goa {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #FF0000, #008000, #0000FF, yellow, beige, #8073d5
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Kerala text animation */
+
+.kerala {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #8ED8F8, #005BAA, #0CB7E1, black, white, #704c87
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Malaysia text animation */
+
+.malaysia {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #CC0000, #010066, #FFCC00, #FFFFFF, #00becc, #bc8173
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Maldives text animation */
+
+.maldives {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #FFFFFF, #00843D, #C8102E, #b46abf, #7135e9, #8183bb
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Shiradi text animation */
+
+.shiradi{
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    yellow, orange, #3EE0BA, #B7AA66, #C55960, #CF4AD3
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Singapore text animation */
+
+.singapore {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    red, white, coral, lightblue, black,  lavender
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Srilanka text animation */
+
+.srilanka {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #FFBE29, #8D153A, #00534E, #EB7400, #FFFFFF, #ed62e8
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Thailand text animation */
+
+.thailand {
+  font-size: 2em;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #A51931, #F4F5F8, #2D2A4A, #8989b4, #511e1e, #55a3ff
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0%,100% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+}
