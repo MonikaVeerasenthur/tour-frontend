@@ -22,7 +22,7 @@ import "./style.css";
 import img1 from "../assets/TwinTower.jpg";
 import img2 from "../assets/Skyline.jpg";
 import img3 from "../assets/Penang.jpg";
-import img4 from "../assets/Langkawi.jpg";
+import img4 from "../assets/Langkawi.jpeg";
 
 const faqs = [
   {
