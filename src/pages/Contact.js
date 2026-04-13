@@ -58,7 +58,6 @@ export default function ContactForm() {
         px: 1
       }}
     >
-    <p>{status}</p>
       <Card sx={{ maxWidth: 500, width: "100%", borderRadius: "30px", height: "99%" }}>
         <CardContent sx={{ padding: 1 }}>
           <Typography sx={{ textAlign: "center", fontFamily: "monospace" }} variant="h5" gutterBottom>
