@@ -38,9 +38,6 @@ export default function ContactForm() {
     const response = await axios.post(
       "https://tour-backend-jeve.onrender.com/travel/contact/create",
       formData,
-      {
-        timeout: 10000,
-      }
     );
     if (response.data.status === "success") {
       setFormData({ name: "", email: "", phone: "", message: "" });
