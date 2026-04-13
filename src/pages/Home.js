@@ -50,7 +50,7 @@ import CoorgCartoon from "../assets/coorg-cartoon.webp";
 import SingaporeCartoon from "../assets/singapore-cartoon.webp";
 import ShiradiCartoon from "../assets/shiradi-cartoon.jpg";
 import AzerbaijanCartoon from "../assets/Azerbaijan-cartoon.jpg";
-import PhilippinesCartoon from "../assets/Philippines-cartoon.avif";
+import PhilippinesCartoon from "../assets/Philippines-cartoon.jpeg";
 import GeorgiaCartoon from "../assets/Georgia-cartoon.jpg";
 import KashmirCartoon from "../assets/Kashmir-cartoon.webp";
 import ManaliCartoon from "../assets/Manali-Cartoon.avif";
