@@ -9,10 +9,10 @@ html,
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
+  position: relative;
+  /* bottom: 0; */
   width: 100%;
-  z-index: 99;
+  /* z-index: 99; */
 }
 
 /* Footer */
@@ -602,6 +602,7 @@ button[type="submit"]:hover {
   background: rgba(255,255,255,0.09);
   backdrop-filter: blur(3px);
   animation: burstIn 1.1s cubic-bezier(.73,-0.43,.75,1.13) 1;
+  padding-bottom: 100px;
 }
 
 @keyframes burstIn {
