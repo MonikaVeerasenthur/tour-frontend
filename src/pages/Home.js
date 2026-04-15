@@ -444,24 +444,12 @@ function Home() {
           <Typography sx={{ ml: 2, mt: 2 }}>No results found</Typography>
         ) : (
           filteredData.map((item) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              key={item._id}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
+            <Grid item xs={12} sm={6} md={4} key={item._id}>
               <Card
                 sx={{
                   borderRadius: "50px",
                   textAlign: "center",
-                  mt: 1,
-                  width: "60%",
-                  maxWidth: 320,
+                  marginTop: "10px",
                 }}
                 role="button"
                 className="horizontal-card"
@@ -492,31 +480,21 @@ function Home() {
           container
           spacing={2}
           sx={{
+            display: "flex",
             justifyContent: "center",
+            flexWrap: "wrap",
+            gap: 2,
             width: "95%",
             mb: 4,
-            mx: "auto",
           }}
         >
           {topRated.map((item) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              key={item._id}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
+            <Grid item xs={12} sm={6} key={item._id}>
               <Card
                 sx={{
                   borderRadius: "50px",
                   textAlign: "center",
-                  mt: 1,
-                  width: "60%",
-                  maxWidth: 320,
+                  marginTop: "10px",
                 }}
                 role="button"
                 className="horizontal-card"
@@ -545,34 +523,22 @@ function Home() {
         container
         spacing={2}
         sx={{
+          display: "flex",
           justifyContent: "center",
-          alignItems: "stretch",
-          width: "100%",
-          mx: "auto",
-          px: { xs: 1, sm: 2 },
+          flexWrap: "wrap",
+          gap: 2,
+          width: "95%",
+          mb: 4,
         }}
       >
         {cruise.map((item) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
-            key={item._id}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+          <Grid item xs={12} sm={6} md={4} lg={3} key={item._id}>
             <Card
               sx={{
-                width: "60%",
-                maxWidth: 280,
                 borderRadius: "30px",
                 textAlign: "center",
-                mt: 1,
-                height: { xs: 220, sm: 260, md: 240 },
+                marginTop: "10px",
+                height: { xs: 200, sm: 260, md: 240 },
                 display: "flex",
                 flexDirection: "column",
                 cursor: "pointer",
@@ -584,15 +550,10 @@ function Home() {
               <CardMedia
                 className="horizontal-card-image"
                 component="img"
-                // height={{ xs: 180, sm: 160, md: 140 }}
+                height={{ xs: 180, sm: 160, md: 140 }}
                 image={item.image}
                 alt={item.name}
-                sx={{
-                  width: "100%",
-                  height: { xs: 150, sm: 160, md: 140 },
-                  objectFit: "cover",
-                  borderRadius: "30px 30px 0 0",
-                }}
+                sx={{ borderRadius: "30px 30px 0 0", objectFit: "cover" }}
               />
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography
