@@ -409,8 +409,18 @@ function Home() {
 
               {/* Overlay search bar */}
 
-              <Box className="search-overlay">
+              <Box
+                className="search-overlay"
+                // sx={{
+                //   width: "50%",
+                //   borderRadius: "20px",
+                //   border: "5px solid #b08f5a",
+                // }}
+              >
                 <TextField
+                  // sx={{
+                  //   backgroundColor: "rgba(255, 255, 255, 0.85);",
+                  // }}
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Where do you want to go?"
@@ -428,40 +438,29 @@ function Home() {
           ))}
         </Slider>
       </Box>
-      <h1 className="top-rate">DREAM DESTINATIONS</h1>
-      <br />
+      <h1 className="top-rate">DREAM DESTINATIONS</h1><br />
       <Grid
         container
         spacing={2}
         sx={{
+          display: "flex",
           justifyContent: "center",
+          flexWrap: "wrap",
+          gap: 2,
           width: "95%",
           mb: 4,
-          mx: "auto",
         }}
       >
         {filteredData.length === 0 ? (
           <Typography sx={{ ml: 2, mt: 2 }}>No results found</Typography>
         ) : (
           filteredData.map((item) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              key={item._id}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
+            <Grid item xs={12} sm={6} key={item._id}>
               <Card
                 sx={{
                   borderRadius: "50px",
                   textAlign: "center",
                   marginTop: "10px",
-                  width: { xs: "100%", sm: "100%" },
-                  maxWidth: { xs: 340, sm: 360, md: "100%" },
                 }}
                 role="button"
                 className="horizontal-card"
@@ -568,11 +567,7 @@ function Home() {
                 sx={{ borderRadius: "30px 30px 0 0", objectFit: "cover" }}
               />
               <CardContent sx={{ flexGrow: 1 }}>
-                <Typography
-                  className="horizontal-card-title"
-                  variant="h6"
-                  sx={{ fontWeight: "bold" }}
-                >
+                <Typography className="horizontal-card-title" variant="h6" sx={{ fontWeight: 'bold' }}>
                   {item.name}
                 </Typography>
               </CardContent>
