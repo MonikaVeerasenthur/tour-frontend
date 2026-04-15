@@ -444,12 +444,25 @@ function Home() {
           <Typography sx={{ ml: 2, mt: 2 }}>No results found</Typography>
         ) : (
           filteredData.map((item) => (
-            <Grid item xs={12} sm={6} md={4} key={item._id}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={item._id}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <Card
                 sx={{
                   borderRadius: "50px",
                   textAlign: "center",
                   marginTop: "10px",
+                  width: { xs: "90%", sm: "100%" },
+                  maxWidth: 320,
+                  margin: "0 auto",
                 }}
                 role="button"
                 className="horizontal-card"
