@@ -460,9 +460,8 @@ function Home() {
                   borderRadius: "50px",
                   textAlign: "center",
                   marginTop: "10px",
-                  width: { xs: "90%", sm: "100%" },
-                  maxWidth: 320,
-                  margin: "0 auto",
+                  width: { xs: "100%", sm: "100%" },
+                  maxWidth: { xs: 340, sm: 360, md: "100%" },
                 }}
                 role="button"
                 className="horizontal-card"
