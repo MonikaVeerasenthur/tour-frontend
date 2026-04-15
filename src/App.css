@@ -142,21 +142,34 @@ footer {
 }
 
 /* Overlay search bar centered horizontally and vertically */
+
 .search-overlay {
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 320px;
+  width: min(80%, 360px);
   background: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
-  padding: 0 12px;
+  padding: 8px 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border: 5px solid #b08f5a;
+}
+
+.search-overlay input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
 }
 
 /* Search input */
 .search-input {
-  width: 100%;
+  width: 200px;
 }
 
 /* Travel spot card styling with tilt hover effect */
@@ -477,7 +490,6 @@ button[type="submit"]:hover {
   }
 }
 
-
 /* Responsive adjustments */
 
 @media (max-width: 900px) {
@@ -485,19 +497,51 @@ button[type="submit"]:hover {
     height: 300px;
   }
   .search-overlay {
-    width: 260px;
+    width: min(85%, 320px);
   }
 }
 
 @media (max-width: 480px) {
   .slide-image {
-    height: 200px;
+    height: 220px;
   }
   .search-overlay {
-    width: 200px;
-    top: 40%;
+    width: min(90%,280px);
+    top: 45%;
   }
 }
+
+/* Recent search responsive */
+
+.search-overlay {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(220px, 80vw, 360px);
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+.search-input {
+  width: 100%;
+}
+
+.search-input .MuiInputBase-root {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+}
+
+.search-input .MuiOutlinedInput-input {
+  padding: 10px 12px;
+}
+
+.search-input .MuiInputAdornment-root {
+  margin-left: 0;
+}
+
 
 /* About us page css */
 
